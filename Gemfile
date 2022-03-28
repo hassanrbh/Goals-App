@@ -55,6 +55,8 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "rails-controller-testing"
   gem "spring"
+  gem "faker"
+  gem "bcrypt"
 end
 
 group :development do
@@ -74,7 +76,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
-  gem "faker"
   gem "launchy"
   gem "shoulda-matchers"
 end
