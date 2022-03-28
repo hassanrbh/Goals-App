@@ -9,6 +9,7 @@
 #  birth_date      :integer          not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  session_token   :string           not null
 #
 require 'rails_helper'
 
@@ -16,8 +17,8 @@ RSpec.describe User, type: :model do
   describe "#validations" do
     it { should validate_presence_of(:email) }
     it { should validate_presence_of(:password_digest) }
+    it { should validate_presence_of(:session_token) }
     it { should validate_presence_of(:username) }
-    it { should validate_uniqueness_of(:username) }
     it { should validate_presence_of(:birth_date) }
   end
   describe "#associations" do
@@ -31,13 +32,13 @@ RSpec.describe User, type: :model do
        it "should hash the password and store it to password_digest" do
         user = FactoryBot.build(:user,password: 'testingmyluck')
         user.valid?
-        expect(user.password_digest).to be_present 
+        expect(user.password_digest).to_not be_empty 
        end
 
        it "should return false if the password length < 6" do
         user = FactoryBot.build(:user,password: 'lengt')
         user.valid?
-        expect(user.errors.messages[:password]).to eq ['must be at least 6 characters'] 
+        expect(user.errors.messages[:password]).to eq ['The password must be at least 6 characters'] 
        end
 
     end
@@ -54,10 +55,10 @@ RSpec.describe User, type: :model do
     end
     describe "!generate_session_token" do 
       it "generate just a random token" do
-        expect(User.generate_session_token).to be_present
+        expect(User.generate_session_token!).to be_present
       end
       it "expect that the generated session token is the same" do
-        expect(User.generate_session_token).to_not eq User.generate_session_token
+        expect(User.generate_session_token!).to_not eq User.generate_session_token!
       end
     end
     describe ".reset_session_token!" do
@@ -81,7 +82,7 @@ RSpec.describe User, type: :model do
         expect(User.find_by_credentials!(user.email,user.password)).to eq(user)
       end
       it "dosen't find the record and return nil" do
-        expect(User.find_by_credentials!("test@test","testsss")).to be false
+        expect(User.find_by_credentials!("test@test","testsss")).to be nil
       end
     end
   end

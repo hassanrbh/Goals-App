@@ -9,6 +9,7 @@
 #  birth_date      :integer          not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  session_token   :string           not null
 #
 FactoryBot.define do
   factory :user do
