@@ -13,7 +13,3 @@
  *= require_tree .
  *= require_self
  */
-.container a {
-    display: block;
-    padding: 5px;
-}
