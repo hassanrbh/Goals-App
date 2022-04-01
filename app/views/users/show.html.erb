@@ -1,6 +1,24 @@
 <h2><%= @user.username %> Profile</h2>
 
 <h4>New Comment</h4>
+<% @user.comment.each do |comment| %>
+    <p><%= comment.comment %></p>
+    <p style="font-weight: 300;">-> <%= comment.user.username %></p>
+<% end %>
+<form action="<%= user_comments_path %>" method="post">
+    <input type="hidden"
+            name="authenticity_token"
+            value="<%= form_authenticity_token %>"/>
+    <input type="hidden"
+            name="user_comments[user_id]"
+            value="<%= @user.id %>">
+    <label>
+    Comment:
+    <textarea name="user_comments[comment]"></textarea>
+    </label>
+    <br />
+    <input type="submit" value="Save Comment">
+</form>
 
 <h4><%= @user.username %> Goals: </h4>
 <ul>

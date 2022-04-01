@@ -15,6 +15,7 @@ class Intention < ApplicationRecord
     validates :user_id, presence: true
     validates :status, presence: true
     validates :completed, presence: true
-    
+
     belongs_to :user
+    has_many :comment, class_name: 'GoalComment'
 end

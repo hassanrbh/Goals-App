@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   resources :intentions
+  resources :goal_comments
+  resources :user_comments
 end
