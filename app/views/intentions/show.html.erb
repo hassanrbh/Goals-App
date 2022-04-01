@@ -11,12 +11,42 @@
         </tr>
         <tr>
             <th style="font-weight: bold;">Finished: </th>
+            <td><%= @intention.completed %></td>
         </tr>
         <tr>
             <th style="font-weight: bold;">Cheers: </th>
         </tr>
         <tr>
             <th style="font-weight: bold;">Completed: </th>
+            <td>
+                <% if @intention.completed == "Ongoing"%>
+                    <form action="<%= intention_path %>" method="post">
+                        <input type="hidden"
+                            name="authenticity_token"
+                            value="<%= form_authenticity_token %>"/>
+                        <input type="hidden"
+                            name="_method"
+                            value="PUT"/>
+                        <input type="hidden"
+                            name="intentions[completed]"
+                            value="completed">
+                        <input type="submit" value="Complete!">
+                    </form>
+                <% else %>
+                    <form action="<%= intention_path %>" method="post">
+                        <input type="hidden"
+                            name="authenticity_token"
+                            value="<%= form_authenticity_token %>"/>
+                        <input type="hidden"
+                            name="_method"
+                            value="PUT"/>
+                        <input type="hidden"
+                            name="intentions[completed]"
+                            value="Ongoing">
+                        <input type="submit" value="Oops! Did not Complete">
+                    </form>
+                <% end %>
+            </td>
         </tr>
     </tbody>
 </table>

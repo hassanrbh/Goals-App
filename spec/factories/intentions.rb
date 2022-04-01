@@ -8,6 +8,7 @@
 #  status     :string           default("public"), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  completed  :string           default("Ongoing")
 #
 FactoryBot.define do
   factory :intention do

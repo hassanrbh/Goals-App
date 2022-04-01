@@ -8,11 +8,13 @@
 #  status     :string           default("public"), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  completed  :string           default("Ongoing")
 #
 class Intention < ApplicationRecord
     validates :name, presence: true
     validates :user_id, presence: true
     validates :status, presence: true
-
+    validates :completed, presence: true
+    
     belongs_to :user
 end

@@ -25,8 +25,19 @@ class IntentionsController < ApplicationController
             flash[:error] = "The Goal is not available"
         end
     end
+    def update
+        intention = Intention.find_by(:id => params[:id])
+
+        if intention.update(intentions_params)
+            flash[:success] = "The Goal is updated successfully"
+            redirect_to intentions_path(intention.id)
+        else
+            flash[:success] = "We have an error"
+            render :show
+        end
+    end
 
     def intentions_params
-        params.require(:intentions).permit(:name,:status,:user_id)
+        params.require(:intentions).permit(:name,:status,:user_id,:completed)
     end
 end

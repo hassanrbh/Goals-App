@@ -9,10 +9,12 @@
             <% if intent.status == "public" %>
                 <li><%= link_to intent.name, intention_path(intent.id) %></li>
                 <p font-family="sans-serif"><%= intent.status %></p>
+                <p font-family="sans-serif"><%= intent.completed %></p>
             <% end %>
         <% else %>
             <li><%= link_to intent.name, intention_path(intent.id) %></li>
             <p font-family="sans-serif"><%= intent.status %></p>
+            <p font-family="sans-serif"><%= intent.completed %></p>
         <% end %>
     <% end %>
 </ul>
