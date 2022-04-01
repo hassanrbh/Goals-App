@@ -4,6 +4,7 @@ RSpec.describe UsersController, type: :controller do
     subject(:user) {
         FactoryBot.create(:user)
     }
+
     describe "GET #index" do 
         it "renders the index template" do
             get :index, params: {}
@@ -18,13 +19,13 @@ RSpec.describe UsersController, type: :controller do
                     id: -1
                 }
                 expect(response).to have_http_status(302)
-                expect(response).to redirect_to "/users"
+                expect(response).to redirects_to "/users"
             end
         end
         context "with valid params " do
             it "should render the show template" do
                 get :show, params: {
-                    id: user.id
+                    id: 1
                 } 
                 expect(response).to have_http_status(200)
                 expect(response).to render_template("show")
@@ -63,15 +64,15 @@ RSpec.describe UsersController, type: :controller do
         end
         context "with valid params" do
             it "should redirect to the index page with success " do
+                let(:user_valid) { FactoryBot.build(:user) }
                 post :create, params: {
                     users: {
-                        username: "hassantarif",
-                        email: "test@test.co",
-                        birth_date: 1990,
-                        password: "password",
+                        :email => user_valid.email,
+                        :password => user_valid.password
                     }
-                }
-                expect(response).to redirect_to user_path(User.last)
+                } 
+                expect(response).to have_http_status(302)
+                expect(response).to redirect_to user_path(user_valid.id)
             end
         end
     end
