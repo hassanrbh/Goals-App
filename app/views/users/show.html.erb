@@ -1,1 +1,38 @@
-<h2><%= @user.username %></h2>
+<h2><%= @user.username %> Profile</h2>
+
+<h4>New Comment</h4>
+<% @user.comment.each do |comment| %>
+    <p><%= comment.comment %></p>
+    <p style="font-weight: 300;">-> <%= comment.user.username %></p>
+<% end %>
+<form action="<%= user_comments_path %>" method="post">
+    <input type="hidden"
+            name="authenticity_token"
+            value="<%= form_authenticity_token %>"/>
+    <input type="hidden"
+            name="user_comments[user_id]"
+            value="<%= @user.id %>">
+    <label>
+    Comment:
+    <textarea name="user_comments[comment]"></textarea>
+    </label>
+    <br />
+    <input type="submit" value="Save Comment">
+</form>
+
+<h4><%= @user.username %> Goals: </h4>
+<ul>
+    <% @user.intention.each do |intent| %>
+        <% if current_user.username != intent.user.username %>
+            <% if intent.status == "public" %>
+                <li><%= link_to intent.name, intention_path(intent.id) %></li>
+                <p font-family="sans-serif"><%= intent.status %></p>
+                <p font-family="sans-serif"><%= intent.completed %></p>
+            <% end %>
+        <% else %>
+            <li><%= link_to intent.name, intention_path(intent.id) %></li>
+            <p font-family="sans-serif"><%= intent.status %></p>
+            <p font-family="sans-serif"><%= intent.completed %></p>
+        <% end %>
+    <% end %>
+</ul>

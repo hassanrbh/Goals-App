@@ -25,6 +25,8 @@ class User < ApplicationRecord
     }
     after_initialize :ensure_session_token
 
+    has_many :intention
+    has_many :comment, class_name: 'UserComment'
     # ! scope methods
     def password=(password)
         self.password_digest = BCrypt::Password.create(password)

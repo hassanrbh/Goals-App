@@ -11,6 +11,15 @@
   </head>
 
   <body>
+    <h1>Goal App</h1>
+    <% if current_user.nil? %>
+      <div class="container">
+        <%= link_to "register me", new_user_path %>
+        <%= link_to "login me in", new_session_path %>
+      </div>
+    <% else %>
+      <%= button_to "logout", session_path(current_user.id), :method => :delete %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

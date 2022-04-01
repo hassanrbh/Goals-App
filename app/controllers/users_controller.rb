@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-<<<<<<< HEAD
-=======
     def index
         @users = User.all
         render :index
@@ -30,7 +28,6 @@ class UsersController < ApplicationController
 
     private
     def users_params
-        params.require(:users).permit(:email,:username,:password, :birth_date, :session_token)
+        params.require(:users).permit(:email,:username,:password, :birth_date)
     end
->>>>>>> parent of 9f21dd8 (adding integretion and end to end sweet tests)
 end

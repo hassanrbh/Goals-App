@@ -1,0 +1,2 @@
+module IntentionHelper
+end
