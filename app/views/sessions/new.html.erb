@@ -2,10 +2,10 @@
 <form action="<%= sessions_path %>" method="post">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
     <label for="email">Email: </label>
-    <input type="text" id="email" name="users[email]">
+    <input type="email" id="email" name="users[email]">
     <br />
     <label for="password">Password: </label>
-    <input type="text" id="password" name="users[password]">
+    <input type="password" id="password" name="users[password]">
     <br />
     <input type="submit" value="login">
 </form>
