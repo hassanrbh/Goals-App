@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_01_181945) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_02_202453) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cheers", force: :cascade do |t|
+    t.integer "giver_id", null: false
+    t.integer "intention_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["giver_id"], name: "index_cheers_on_giver_id"
+    t.index ["intention_id", "giver_id"], name: "index_cheers_on_intention_id_and_giver_id", unique: true
+  end
 
   create_table "goal_comments", force: :cascade do |t|
     t.text "comment", null: false

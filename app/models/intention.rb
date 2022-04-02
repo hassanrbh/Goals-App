@@ -18,4 +18,11 @@ class Intention < ApplicationRecord
 
     belongs_to :user
     has_many :comment, class_name: 'GoalComment'
+    has_many :cheer
+
+
+    def cheered_by?(user)
+        cheer.exists?(giver_id: user.id) 
+    end
+    
 end
