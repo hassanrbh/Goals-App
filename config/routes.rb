@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   root "users#index"
   resources :users
   resources :sessions
-  resources :intentions
+  resources :intentions do
+    resources :cheers
+  end
   resources :goal_comments
   resources :user_comments
 end
