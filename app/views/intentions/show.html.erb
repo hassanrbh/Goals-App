@@ -50,3 +50,21 @@
         </tr>
     </tbody>
 </table>
+<h3>Comments For (<%= @intention.user.username %>): </h3>
+<% @intention.comment.each do |comment| %>
+    <p><%= comment.comment %></p>
+<% end %>
+<form action="<%= goal_comments_path %>" method="post">
+    <input type="hidden"
+            name="authenticity_token"
+            value="<%= form_authenticity_token %>"/>
+    <input type="hidden"
+            name="goal_comments[intention_id]"
+            value="<%= @intention.id %>">
+    <label>
+    Comment:
+    <textarea name="goal_comments[comment]"></textarea>
+    </label>
+    <br />
+    <input type="submit" value="Save Comment">
+</form>
