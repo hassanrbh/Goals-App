@@ -26,6 +26,7 @@ class User < ApplicationRecord
     }
     after_initialize :ensure_session_token
     before_validation :ensure_cheer_count
+    has_many :likes
     has_many :intention
     has_many :comment, class_name: 'UserComment'
     has_many :cheers_given,

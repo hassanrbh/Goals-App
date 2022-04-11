@@ -13,4 +13,6 @@ class GoalComment < ApplicationRecord
     validates :intention_id, presence: true
 
     belongs_to :intention
+
+    has_many :likes, as: :likeable, dependent: :destroy
 end
