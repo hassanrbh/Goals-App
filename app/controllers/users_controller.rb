@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
     def index
-        @users = User.all
-        render :index
+        if params[:s]
+            @user = User.find_by(:username => params[:s])
+            redirect_to user_path(@user.id)
+        else
+            @users = User.all
+            render :index
+        end
     end
 
     def show

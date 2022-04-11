@@ -47,6 +47,8 @@ gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
+# For testing 
+gem 'cucumber'
 gem 'bcrypt'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -58,6 +60,7 @@ group :development, :test do
   gem "faker"
   gem "bcrypt"
 end
+
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
@@ -78,4 +81,7 @@ group :test do
   gem "webdrivers"
   gem "launchy"
   gem "shoulda-matchers"
+  gem 'cucumber-rails', require: false
+  # database_cleaner is not mandatory, but highly recommended
+  gem 'database_cleaner'
 end
